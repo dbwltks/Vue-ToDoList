@@ -8,3 +8,5 @@ import 'bootstrap/dist/js/bootstrap.esm.min.js'
 const app = createApp(App)
 app.provide('today', new Date().toISOString().split('T')[0])
 app.mount('#app')
+
+

@@ -1,23 +1,56 @@
-const todos = ref([])
-provide('todos', readonly(todos))
+<template>
+  <todo-list-new />
+  <section class="container">
+    <div class="row justify-content-center m-2">
+      <todo-list-main />
+    </div>
+  </section>
+</template>
 
-const addTodo = (job, date) => {}
-const removeTodo = (id) => {}
-const completeTodo = (id) => {}
+<script>
+import { ref, readonly, provide } from 'vue'
+import { useStorage } from '../compositions/storage'
+import TodoListNew from './TodoListNew.vue'
+import TodoListMain from './TodoListMain.vue'
 
-provide('addTodo', addTodo)
-provide('removeTodo', removeTodo)
-provide('completeTodo', completeTodo)
+export default {
+  components: { TodoListNew, TodoListMain },
+  name: 'TodoListContainer',
+  setup() {
+    const todos = ref([])
+    const { loadTodos, saveTodos, storage_id } = useStorage()
 
-const initiTodo = (init_todos) => {
-  todos.value = init_todos
+    provide('todos', readonly(todos))
+
+    const initiTodo = (init_todos) => {
+      todos.value = init_todos
+    }
+    const addTodo = (job, date) => {
+      todos.value.push({
+        id: storage_id.value++,
+        job: job,
+        date: date,
+        completed: false,
+      })
+      saveTodos(todos)
+    }
+    const removeTodo = (id) => {
+      todos.value.splice(id, 1)
+      todos.value.forEach((todo, idx) => {
+        todo.id = idx
+      })
+      saveTodos(todos)
+    }
+    const completeTodo = (id) => {
+      todos.value.find((todo) => todo.id == id).completed = true
+      saveTodos(todos)
+    }
+
+    provide('addTodo', addTodo)
+    provide('removeTodo', removeTodo)
+    provide('completeTodo', completeTodo)
+
+    loadTodos(initiTodo)
+  },
 }
-
-storage.load(initTodos)
-TodoListConatiner.js
-
-function load(cb) {
-  data = (localStorage에서 불러온 데이터)
-  cb(data)
-}
-storage.js
+</script> 
