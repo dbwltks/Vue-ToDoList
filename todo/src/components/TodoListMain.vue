@@ -15,10 +15,11 @@
 
 <script>
 import { ref, provide, inject, watch } from 'vue'
-import { useFilter } from '../compositions/filters'
 
+import { useFilter } from '../compositions/filters'
 import TodoListMenu from './TodoListMenu.vue'
 import TodoList from './TodoList.vue'
+
 export default {
   name: 'TodoListMain',
   setup(props) {
@@ -26,7 +27,7 @@ export default {
       getPendingTodos,
       getActiveTodayTodos,
       getCompletedTodayTodos,
-      getAlltodayTodos,
+      getAllTodayTodos,
       getAllTodos,
     } = useFilter()
     const filter = ref(0)
@@ -48,7 +49,7 @@ export default {
       },
       2: {
         str: '오늘의 모든 기록',
-        func: getAlltodayTodos,
+        func: getAllTodayTodos,
         category: false,
       },
       3: {

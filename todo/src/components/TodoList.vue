@@ -1,6 +1,5 @@
 <template>
   <main>
-    <a>gg</a>
     <div v-for="(todo, idx) in data" :key="todo.id">
       <div class="input-group my-2 input-group-sm">
         <div class="input-group-text">
@@ -15,18 +14,18 @@
         <div class="input-group-text">
           <input
             class="form-input mt-0"
-            type="data"
+            type="date"
             :min="today"
             disabled
-            :value="todo.data"
+            :value="todo.date"
           />
         </div>
-        <input type="text" class="form-constrol" :value="todo.job" />
+        <input type="text" class="form-control" :value="todo.job" />
         <button
           class="btn btn-outline-primary dropdown-toggle"
           type="button"
           data-bs-toggle="dropdown">
-          할일관리
+          할일 관리
         </button>
         <ul class="dropdown-menu dropdown-menu-end">
           <li v-for="item in menu" :key="item.str">

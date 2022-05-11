@@ -30,7 +30,8 @@
 </template>
 
 <script>
-import { reactive, toRefs, inject, ref, toRef } from 'vue'
+import { reactive, toRefs, inject } from 'vue'
+
 export default {
   name: 'TodoListNew',
   setup() {

@@ -20,12 +20,3 @@ export const useStorage = () => {
     saveTodos,
   }
 }
-
-// storage.load(initTodos)
-// TodoListConatiner.js
-
-// function load(cb) {
-//   data = (localStorage에서 불러온 데이터)
-//   cb(data)
-// }
-// storage.js
